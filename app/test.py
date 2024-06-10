@@ -58,7 +58,11 @@ def extract_codes(text):
 def get_all_images(link):
     """Mở Selenium và lấy mã OTP từ liên kết"""
     options = webdriver.ChromeOptions()
-    driver = webdriver.Chrome()
+    options.add_argument("--headless")
+    driver = webdriver.Remote(
+        command_executor='http://tb_watcher_selenium:4444/wd/hub',
+        options=options
+    )
     cookie_file_path = 'tb.json'
     try:
         driver.get("https://world.taobao.com")

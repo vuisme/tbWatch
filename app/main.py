@@ -93,11 +93,13 @@ def get_all_images(link):
                 driver.add_cookie(cookie)
 
         driver.get(link)
+        logger.info(driver.page_source)
         image_elements = WebDriverWait(driver, 10).until(
             EC.presence_of_all_elements_located((By.XPATH, "//div[contains(@class, 'PicGallery--root--')]/img"))
         )
 
         # Trích xuất liên kết hình ảnh
+        logger.info(driver.page_source)
         logger.info(image_elements)
         image_links = []
         for img in image_elements:
